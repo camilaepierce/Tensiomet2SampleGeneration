@@ -2,7 +2,7 @@
 
 % Save current parameters to be used in script
 % Run example_simple forward script
-N = 999; %number of drops to generate
+N = 3; %number of drops to generate
 
 
 % Keeping track of Ar - Wo combinations that converge / don´t
@@ -11,7 +11,7 @@ Wo_array = zeros(N, 1, "double");
 converged = zeros(N, 1, "double");
 
 % Run randomization script N times
-for i = 1:N
+for i = 3:3
     try
         disp(i);
         % axis off % removes axes from graph for image collection
@@ -21,8 +21,8 @@ for i = 1:N
         % Save image to folders
         saveas(gcf, sprintf("./sample_generation/test_images/%03d.png", i));
         % Save data to folders
-        writematrix([vars_sol.z vars_sol.r], sprintf("./sample_generation/test_data_rz/rz%03d.txt", i));
-        writestruct(params_phys, sprintf("./sample_generation/test_data_params/params%03d.json", i), FileType="json");
+        writematrix([vars_sol.z vars_sol.r], sprintf("./sample_generation/test_data_rz/rz%d.txt", i));
+        writestruct(params_phys, sprintf("./sample_generation/test_data_params/params%d.json", i), FileType="json");
         converged(i) = 2;
     catch
        disp(["unable to converge with Wo=", Wo, " and Ar=", Ar ]);
