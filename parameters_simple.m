@@ -25,8 +25,8 @@ Ar_min = 5;
 Ar_max = 18;
 
 % dimensionfull input parameters
-Wo = 2.40147847319403; %(rand * (Wo_max - Wo_min)) + Wo_min;
-Ar = 16.561011094609977; %(rand * (Ar_max - Ar_min)) + Ar_min;
+Wo = (rand * (Wo_max - Wo_min)) + Wo_min;
+Ar = (rand * (Ar_max - Ar_min)) + Ar_min;
 sigma = 5;        % surface tension [mN/m]
 grav = 9.807e3;    % gravitational acceleration [mm/s^2]
 deltarho = 1e-3;   % density difference [10^6 kg/m^3]

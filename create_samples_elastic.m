@@ -3,7 +3,7 @@
 % Save current parameters to be used in script
 % Run example_simple forward script
 N = 1; %number of drops to generate
-
+CREATE_PLOTS=false;
 
 % Keeping track of Ar - Wo combinations that converge / don´t
 % Ar_array = zeros(N, 1, "double");
@@ -14,19 +14,21 @@ N = 1; %number of drops to generate
 % frac_array = zeros(N, 1, "double");
 warning('off')
 % Run randomization script N times
-for i = 2:2
+for i = 1:N
     try
         disp(i);
         % axis off % removes axes from graph for image collection
         example_elastic;
-        % Plot current shape
-        plot_shape_full(vars_sol.r, vars_sol.z, 1);
-        % Save image to folders
-        saveas(gcf, sprintf("./sample_generation/test_images/%d.png", i));
+        if CREATE_PLOTS
+            % Plot current shape
+            plot_shape_full(vars_sol.r, vars_sol.z, 1);
+            % Save image to folders
+            saveas(gcf, sprintf("./sample_generation/test_images/%d.png", i));
+        end
         % Save data to folders
         writematrix([vars_sol.z vars_sol.r], sprintf("./sample_generation/test_data_rz/rz%d.txt", i));
         writestruct(params_phys, sprintf("./sample_generation/test_data_params/params%d.json", i), FileType="json");
-        writematrix([vars_sol.sigmas, vars_sol.sigmap], sprintf("./sample_generation/test_data_sigmas/sigma%d.txt", i))
+        writematrix([vars_sol.sigmas, vars_sol.sigmap], sprintf("./sample_generation/test_data_sigmas/sigma%d.txt", i));
         % converged(i) = 2;
     catch
        disp(["unable to converge with Wo=", Wo, " and Ar=", Ar , "Kmod=", params_phys.Kmod, "Gmod=", params_phys.Gmod, "compression", params_phys.frac]);

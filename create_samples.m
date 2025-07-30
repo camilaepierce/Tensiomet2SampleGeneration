@@ -11,7 +11,7 @@ Wo_array = zeros(N, 1, "double");
 converged = zeros(N, 1, "double");
 
 % Run randomization script N times
-for i = 3:3
+for i = 1:N
     try
         disp(i);
         % axis off % removes axes from graph for image collection
